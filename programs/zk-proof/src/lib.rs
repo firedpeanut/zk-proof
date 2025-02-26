@@ -39,4 +39,28 @@ pub mod zk_proof {
     ) -> Result<()> {
         process_proof(ctx, index, proof_a, proof_b, proof_c, public_inputs)
     }
+
+    pub fn verify(
+        ctx: Context<Verifying>,
+        proof_a: [u8; 64],
+        proof_b: [u8; 128],
+        proof_c: [u8; 64],
+        public_inputs: [u8; 64],
+        vk_alpha_g1: [u8; 64],
+        vk_beta_g2: [u8; 128],
+        vk_gamma_g2: [u8; 128],
+        vk_delta_g2: [u8; 128],
+    ) -> Result<()> {
+        process_verify(
+            ctx,
+            proof_a,
+            proof_b,
+            proof_c,
+            public_inputs,
+            vk_alpha_g1,
+            vk_beta_g2,
+            vk_gamma_g2,
+            vk_delta_g2,
+        )
+    }
 }
