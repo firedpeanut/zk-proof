@@ -23,8 +23,7 @@ pub struct InitVerifyingKey<'info> {
     pub system_program: Program<'info, System>,
 }
 
-
-pub fn proccess_init(
+pub fn process_init(
     ctx: Context<InitVerifyingKey>,
     index: u16,
     vk_alpha_g1: [u8; 64],

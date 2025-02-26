@@ -3,6 +3,7 @@ pub mod instructions;
 pub mod state;
 
 use anchor_lang::prelude::*;
+use instructions::*;
 
 declare_id!("GwacL1YSrt8pAzZ5CupAHzzXAcwL65Wk2M4FUxM8fRGo");
 
@@ -10,11 +11,32 @@ declare_id!("GwacL1YSrt8pAzZ5CupAHzzXAcwL65Wk2M4FUxM8fRGo");
 pub mod zk_proof {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        msg!("Greetings from: {:?}", ctx.program_id);
-        Ok(())
+    pub fn init(
+        ctx: Context<InitVerifyingKey>,
+        index: u16,
+        vk_alpha_g1: [u8; 64],
+        vk_beta_g2: [u8; 128],
+        vk_gamma_g2: [u8; 128],
+        vk_delta_g2: [u8; 128],
+    ) -> Result<()> {
+        process_init(
+            ctx,
+            index,
+            vk_alpha_g1,
+            vk_beta_g2,
+            vk_gamma_g2,
+            vk_delta_g2,
+        )
+    }
+
+    pub fn proof(
+        ctx: Context<VerifyingProof>,
+        index: u16,
+        proof_a: [u8; 64],
+        proof_b: [u8; 128],
+        proof_c: [u8; 64],
+        public_inputs: [u8; 64],
+    ) -> Result<()> {
+        process_proof(ctx, index, proof_a, proof_b, proof_c, public_inputs)
     }
 }
-
-#[derive(Accounts)]
-pub struct Initialize {}
