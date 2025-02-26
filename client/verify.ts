@@ -2,8 +2,7 @@ import * as anchor from "@coral-xyz/anchor";
 import { Program } from "@coral-xyz/anchor";
 import { ZkProof } from "../target/types/zk_proof";
 
-process.env.ANCHOR_PROVIDER_URL =
-  "https://solana-devnet.g.alchemy.com/v2/ez0ou58DU8YEeS4MIErSOujrzcLPvn8m";
+process.env.ANCHOR_PROVIDER_URL = "https://solana-devnet.g.alchemy.com/v2/*";
 process.env.ANCHOR_WALLET = "/home/zgf/.config/solana/id.json";
 
 const provider = anchor.AnchorProvider.env();
